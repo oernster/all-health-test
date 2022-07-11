@@ -20,6 +20,10 @@ Enter command: uvicorn main:app --reload
 
 Go to http://127.0.0.1:8000 on your favourite browser.  Further instructions there.
 
+To run test cases (after running ingest):
+
+Run command: pytest ./tests.py
+
 # Things to enhance...
 
 1) Use fixtures in test cases.
