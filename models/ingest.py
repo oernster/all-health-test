@@ -9,6 +9,6 @@ class Ingest(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     timestamp = Column(Integer)
-    base = Column(String)
+    base = Column(String, index=True)
     date = Column(String)
     rates = Column(String)

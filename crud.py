@@ -6,9 +6,16 @@ from models.ingest import Ingest as Ingest_model
 from schema.ingest import Ingest as Ingest_schema
 
 
-def create_ingest(ingest: Ingest_schema, db: Session = Depends(get_db)):
-    db_ingest = Ingest_model(**ingest.dict())
+def create_ingest(db: Session, ingest: Ingest_schema):
+    db_ingest = Ingest_model(timestamp=ingest.timestamp,
+                             base=ingest.base,
+                             date=ingest.date,
+                             rates=ingest.rates)
     db.add(db_ingest)
     db.commit()
     db.refresh(db_ingest)
     return db_ingest
+
+def get_exchange_rates(db: Session, currency):
+    return db.query(Ingest_model).filter(Ingest_model.base == currency).first()
+

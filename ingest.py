@@ -6,7 +6,7 @@ class RetrieveData(object):
     def __init__(self):
         self.output = []
         self.timeout = 0
-        self.local_url = 'http://127.0.0.1/ingest/'
+        self.local_url = 'http://127.0.0.1:8000/ingest/'
         self.fixer_list_url = "https://api.apilayer.com/exchangerates_data/symbols"
         self.fixer_payload = {}
         self.fixer_headers= {
@@ -57,11 +57,11 @@ class RetrieveData(object):
                 'date': item['date'].replace("'", '"'),
                 'rates': rates.replace("'", ''),
             }
-            print(currency_data)
-            # response = requests.request("POST", self.local_url, data=currency_data)
-            # status_code = response.status_code
-            # if status_code == 200:
-            #     print("Successfully ingested currency data from fixer.io API")
+            response = requests.post(url=self.local_url, data=json.dumps(currency_data))
+            status_code = response.status_code
+            print(status_code)
+            if status_code == 200:
+                print("Successfully ingested currency data from fixer.io API")
 
 
 if __name__ == '__main__':
