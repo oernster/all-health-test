@@ -1,5 +1,25 @@
 # all-health-test
 
+Run pre-requisites...
+
+Install git.
+
+Clone the repo.
+
+Install python3.
+
+Install virtualenv.
+
+Enter command: virtualenv venv.
+
+Enter command: source venv/bin/activate or the equivalent on windows if not using a linux box.
+
+Enter command: pip3 install -r requirements.txt
+
+Enter command: uvicorn main:app --reload
+
+Go to http://127.0.0.1:8000 on your favourite browser.  Further instructions there.
+
 # High level requirements:
 Use the http://fixer.io/ API to ingest currency rates.
 
