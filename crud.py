@@ -19,6 +19,6 @@ def create_ingest(db: Session, ingest: Ingest_schema):
     db.refresh(db_ingest)
     return db_ingest
 
-def get_exchange_rates(db: Session, currency):
-    return db.query(Ingest_model).filter(Ingest_model.base == currency).order_by(desc('updated')).first()
+def get_exchange_rates(db: Session, currency, date):
+    return db.query(Ingest_model).filter(Ingest_model.base == currency).filter(Ingest_model.date == date).order_by(desc('updated')).first()
 

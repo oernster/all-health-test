@@ -8,10 +8,12 @@ client = TestClient(app)
 
 class TestClass:
     def setup(self):
+        self.currency = 'AED'
+        self.date = '2022-07-11'
         self.input_data = {
-            "timestamp": 41456,
-            "base": 'EUR',
-            "date": '2011-05-07',
+            "timestamp": 1657529234,
+            "base": self.currency,
+            "date": self.date,
             "rates": 'GBP: 123, USD: 456',
         }
 
@@ -35,7 +37,7 @@ class TestClass:
     def test_exchange_rates(self):
         self.setup()
         response = client.get(
-            "/exchange_rates/EUR",
+            "/exchange_rates/AED/2022-07-11",
         )
         assert response.status_code == 200
         assert response.json()['timestamp'] == self.input_data['timestamp']
