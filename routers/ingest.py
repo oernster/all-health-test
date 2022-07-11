@@ -1,10 +1,10 @@
 from fastapi import APIRouter
-from schema import Values
+from schema import Ingest
 
 
 router = APIRouter()
 
 
 @router.post("/ingest/")
-async def ingest_data(numbers: Values, tags=["ingest_data"]):
+async def ingest_data(strings: Ingest, tags=["ingest_data"]):
     return {"success": "true"}
