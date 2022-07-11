@@ -11,4 +11,4 @@ class Ingest(Base):
     timestamp = Column(Integer)
     base = Column(String)
     date = Column(String)
-    rates = str
+    rates = Column(String)
