@@ -20,6 +20,12 @@ Enter command: uvicorn main:app --reload
 
 Go to http://127.0.0.1:8000 on your favourite browser.  Further instructions there.
 
+# Things to enhance...
+
+1) Use fixtures in test cases.
+2) Remove API key from source code and turn into an environment variable.
+3) Dockerise.
+
 # High level requirements:
 Use the http://fixer.io/ API to ingest currency rates.
 
