@@ -35,7 +35,6 @@ class RetrieveData(object):
                         result = response.json()
                         result.pop('success', None) # 200 is enough for success indication for this test
                         self.output.append(result)
-                    print(self.output)
                     break
         except requests.exceptions.Timeout:
             # Maybe set up for a retry, or continue in a retry loop
@@ -50,12 +49,19 @@ class RetrieveData(object):
             raise SystemExit(e)
 
     def process_data(self):
-        pass
-        #print(json.loads(str(self.output)))
-        # response = requests.request("POST", self.local_url, data=json.loads(self.output))
-        # status_code = response.status_code
-        # if status_code == 200:
-        #     print("Successfully ingested currency data from fixer.io API")
+        for item in self.output:
+            rates = str(item['rates']).replace('{', '').replace('}', '')
+            currency_data = {
+                'timestamp': item['timestamp'],
+                'base': item['base'].replace("'", '"'),
+                'date': item['date'].replace("'", '"'),
+                'rates': rates.replace("'", ''),
+            }
+            print(currency_data)
+            # response = requests.request("POST", self.local_url, data=currency_data)
+            # status_code = response.status_code
+            # if status_code == 200:
+            #     print("Successfully ingested currency data from fixer.io API")
 
 
 if __name__ == '__main__':
