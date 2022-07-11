@@ -1,12 +1,11 @@
 from typing import Optional
 from fastapi import FastAPI
 from routers import main, ingest
-from .database import SessionLocal, engine
+from database import SessionLocal, engine, Base
+import models
 
-from . import crud, models, schema
 
-
-models.Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 
